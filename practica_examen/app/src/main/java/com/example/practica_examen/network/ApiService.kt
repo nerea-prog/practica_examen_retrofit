@@ -15,4 +15,6 @@ interface ApiService {
     @GET("posts/{id}")
     suspend fun getPostById(@Path("id") id: Int): Response<Post>
 
+    @POST("posts")
+    suspend fun createPost(@Body post: Post): Response<Post>
 }
