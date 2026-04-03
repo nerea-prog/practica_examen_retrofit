@@ -1,3 +1,5 @@
+package com.example.practica_examen.viewmodel
+
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,9 +17,6 @@ class PostViewModel : ViewModel() {
 
     private val _posts = MutableLiveData<List<Post>>()
     val posts: LiveData<List<Post>> = _posts
-
-    private val _post = MutableLiveData<Post>()
-    val post: LiveData<Post> = _post
 
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading

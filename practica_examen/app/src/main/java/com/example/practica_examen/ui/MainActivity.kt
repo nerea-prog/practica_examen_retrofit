@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, Ejercicio2Activity::class.java))
         }
         findViewById<Button>(R.id.btnEjercicio3).setOnClickListener {
-            startActivity(Intent(this, Ejercicio1Activity::class.java)) // misma lista, al pulsar navega al detalle
+            startActivity(Intent(this, Ejercicio1Activity::class.java))
         }
         findViewById<Button>(R.id.btnEjercicio4).setOnClickListener {
             startActivity(Intent(this, Ejercicio4Activity::class.java))
