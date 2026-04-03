@@ -21,6 +21,8 @@ class PostViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _missatge = MutableLiveData<String?>()
+    val missatge: LiveData<String?> = _missatge
 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
@@ -47,4 +49,21 @@ class PostViewModel : ViewModel() {
             }
         }
     }
+
+    fun eliminar(id: String) {
+        viewModelScope.launch {
+            try {
+                val response = repository.eliminar(id)
+                if (response.isSuccessful) {
+                    _missatge.value = "Element eliminat"
+                    cargar()
+                } else {
+                    _missatge.value = "Error al eliminar: ${response.code()}"
+                }
+            } catch (e: Exception) {
+                _missatge.value = "Error: ${e.message}"
+            }
+        }
+    }
+
 }

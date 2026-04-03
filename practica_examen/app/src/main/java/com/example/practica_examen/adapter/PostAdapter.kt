@@ -3,6 +3,7 @@ package com.example.practica_examen.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practica_examen.R
@@ -10,6 +11,7 @@ import com.example.practica_examen.model.Post
 
 class PostAdapter(
     private var lista: List<Post> = emptyList(),
+    private val onEliminar: (String) -> Unit,
     private val onClick: (Post) -> Unit
 ) : RecyclerView.Adapter<PostAdapter.VH>() {
 
@@ -17,6 +19,7 @@ class PostAdapter(
         val tvId: TextView = view.findViewById(R.id.tvId)
         val tvTitle: TextView = view.findViewById(R.id.tvTitle)
         val tvBody: TextView = view.findViewById(R.id.tvBody)
+        val btnEliminar: Button = view.findViewById(R.id.btnEliminar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -28,8 +31,12 @@ class PostAdapter(
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = lista[position]
         holder.tvTitle.text = item.title
-        holder.tvId.text = item.id.toString()
+        holder.tvId.text = item.id
         holder.tvBody.text = item.body
+        
+        holder.btnEliminar.setOnClickListener { 
+            onEliminar(item.id) 
+        }
         
         holder.itemView.setOnClickListener {
             onClick(item)

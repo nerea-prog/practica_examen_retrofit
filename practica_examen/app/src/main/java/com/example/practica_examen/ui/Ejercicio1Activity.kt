@@ -27,21 +27,34 @@ class Ejercicio1Activity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         progressBar = findViewById(R.id.progressBar)
 
-        adapter = PostAdapter { post ->
-            val intent = Intent(this, DetallePostActivity::class.java)
-            intent.putExtra("POST_ID", post.id)
-            startActivity(intent)
-        }
+        // Adaptamos el constructor del Adapter con las dos lambdas
+        adapter = PostAdapter(
+            onEliminar = { id ->
+                viewModel.eliminar(id.toString())
+            },
+            onClick = { post ->
+                val intent = Intent(this, DetallePostActivity::class.java)
+                intent.putExtra("POST_ID", post.id)
+                startActivity(intent)
+            }
+        )
         
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
         viewModel.posts.observe(this) { adapter.update(it) }
+        
         viewModel.isLoading.observe(this) {
             progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
+        
         viewModel.error.observe(this) { msg ->
             msg?.let { Toast.makeText(this, it, Toast.LENGTH_LONG).show() }
+        }
+
+        // Observamos el mensaje de eliminación exitosa
+        viewModel.missatge.observe(this) { msg ->
+            msg?.let { Toast.makeText(this, it, Toast.LENGTH_SHORT).show() }
         }
     }
 }
