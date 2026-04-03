@@ -13,7 +13,7 @@ class PostRepository {
     suspend fun getPosts(): Response<List<Post>> {
         return RetrofitClient.API().getPosts()
     }
-    suspend fun getPostById(id: Int): Response<Post> = RetrofitClient.API().getPostById(id)
+    suspend fun getPostById(id: String): Response<Post> = RetrofitClient.API().getPostById(id)
 
     suspend fun createPost(post: Post): Response<Post> = RetrofitClient.API().createPost(post)
 }

@@ -15,20 +15,18 @@ class DetallePostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_post)
 
-        // Rebre l'ID passat desde l'Activity anterior
-        val postId = intent.getIntExtra("POST_ID", -1)
-        if (postId == -1) { finish(); return }
+        // Ahora recibimos un String
+        val postId = intent.getStringExtra("POST_ID")
+        if (postId == null) { finish(); return }
 
-        // Carregar les dades
+        // Carregar les dades (pasamos el String directamente)
         viewModel.cargarItem(postId)
 
-        // Observar i posar als TextViews (NO cal RecyclerView)
         viewModel.post.observe(this) { post ->
             post?.let {
-                findViewById<TextView>(R.id.tvIdDetalle).text = it.id.toString()
+                findViewById<TextView>(R.id.tvIdDetalle).text = it.id
                 findViewById<TextView>(R.id.tvTituloDetalle).text = it.title
                 findViewById<TextView>(R.id.tvBodyDetalle).text = it.body
-                // Afegeix tots els camps que necessitis
             }
         }
 

@@ -4,18 +4,14 @@ import android.util.Log
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.jvm.java
 
 class RetrofitClient {
     companion object {
         private var mItemAPI: ApiService? = null
 
-
         @Synchronized
         fun API(): ApiService {
             if (mItemAPI == null) {
-
-
                 val gsondateformat = GsonBuilder()
                     .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                     .create()
@@ -23,7 +19,7 @@ class RetrofitClient {
                 Log.d("RetrofitClient", "Viendo conexión")
                 mItemAPI = Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create(gsondateformat))
-                    .baseUrl("https://jsonplaceholder.typicode.com/")
+                    .baseUrl("https://69cff7a0a4647a9fc6763724.mockapi.io/")
                     .build()
                     .create(ApiService::class.java)
                 Log.d("RetrofitClient", "URL correcta")

@@ -48,15 +48,15 @@ class Ejercicio4ViewModel : ViewModel() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val nouItem = Post(id = 0, userId = 1, title = title, body = body)
+                // userId e id como Strings para MockAPI
+                val nouItem = Post(id = "0", userId = "1", title = title, body = body)
                 val response = repository.createPost(nouItem)
                 
                 if (response.isSuccessful) {
                     val postCreado = response.body()
-                    postCreado?.let { nuevo ->
-                        // TRUCO: Añadimos el nuevo post a la lista local manualmente
+                    postCreado?.let { post ->
                         val listaActual = _posts.value?.toMutableList() ?: mutableListOf()
-                        listaActual.add(0, nuevo) // Lo ponemos al principio
+                        listaActual.add(0, post)
                         _posts.value = listaActual
                     }
                     _missatge.value = "Element creat correctament!"

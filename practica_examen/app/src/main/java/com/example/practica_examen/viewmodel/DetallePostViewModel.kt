@@ -11,13 +11,14 @@ import kotlinx.coroutines.launch
 class DetallePostViewModel : ViewModel() {
     private val repository = PostRepository()
 
-    private val _post = MutableLiveData<Post?>()   // UN sol element, no llista
+    private val _post = MutableLiveData<Post?>()
     val post: LiveData<Post?> = _post
 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
-    fun cargarItem(id: Int) {   // El ID ve des de l'Activity
+    // El ID ahora es String
+    fun cargarItem(id: String) {
         viewModelScope.launch {
             try {
                 val response = repository.getPostById(id)
