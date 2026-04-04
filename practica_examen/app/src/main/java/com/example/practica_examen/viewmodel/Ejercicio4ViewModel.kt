@@ -48,18 +48,11 @@ class Ejercicio4ViewModel : ViewModel() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                // userId e id como Strings para MockAPI
                 val nouItem = Post(id = "0", userId = "1", title = title, body = body)
                 val response = repository.createPost(nouItem)
-                
                 if (response.isSuccessful) {
-                    val postCreado = response.body()
-                    postCreado?.let { post ->
-                        val listaActual = _posts.value?.toMutableList() ?: mutableListOf()
-                        listaActual.add(0, post)
-                        _posts.value = listaActual
-                    }
                     _missatge.value = "Element creat correctament!"
+                    cargar()
                 } else {
                     _missatge.value = "Error al crear: ${response.code()}"
                 }
