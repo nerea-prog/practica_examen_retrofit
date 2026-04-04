@@ -17,5 +17,6 @@ class PostRepository {
 
     suspend fun createPost(post: Post): Response<Post> = RetrofitClient.API().createPost(post)
 
+    suspend fun updatePostById(id: String, post: Post): Response<Post> = RetrofitClient.API().updatePostById(id, post)
     suspend fun eliminar(id: String): Response<Unit> = RetrofitClient.API().eliminarItem(id)
 }
