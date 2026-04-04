@@ -55,4 +55,12 @@
         android:text="Ejercicio 4 — Crear Post (POST)"
         android:backgroundTint="#F44336"/>
 
+    <Button
+        android:id="@+id/btnEjercicio5"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Ejercicio 5 — Update Post (PUT)"
+        android:backgroundTint="#9C27B0"
+        android:layout_marginTop="16dp"/>
+
 </LinearLayout>

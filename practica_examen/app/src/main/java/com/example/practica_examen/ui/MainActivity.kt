@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.practica_examen.R
+import kotlin.jvm.java
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.btnEjercicio4).setOnClickListener {
             startActivity(Intent(this, Ejercicio4Activity::class.java))
+        }
+        findViewById<Button>(R.id.btnEjercicio5).setOnClickListener {
+            startActivity(Intent(this, Ejercicio5Activity::class.java))
         }
     }
 }
