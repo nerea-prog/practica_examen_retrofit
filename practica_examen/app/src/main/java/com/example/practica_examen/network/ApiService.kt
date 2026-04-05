@@ -25,5 +25,4 @@ interface ApiService {
 
     @DELETE("posts/posts/{id}/")
     suspend fun eliminarItem(@Path("id") id: String): Response<Unit>
-
 }
